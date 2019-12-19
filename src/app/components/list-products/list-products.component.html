@@ -1,0 +1,45 @@
+<section class="row mt-5">
+    <div class="col">
+      <button class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalProduct">Nuevo Producto</button>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Disponibles</th>
+            <th scope="col">Precio</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{product.ProductName}}</td>
+            <td>{{product.QuantityPerUnity}}</td>
+            <td>{{product.UnitPrice}}</td>
+            <td>{{product.UnitsInStock}}</td>
+            
+            <td>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#modalProduct" (click)="onPreUpdateProduct(product)">Actualizar</button>
+            </td>
+            <ng-template #noOwner>
+              <td>
+                <button class="btn btn-secondary" disabled="true">Update</button>
+              </td>
+            </ng-template>
+            <td>
+              <button class="btn btn-danger" (click)="onDeleteProduct(product.id)">Delete</button>
+            </td>
+            <ng-template #noAdmin>
+              <td>
+                <button class="btn btn-danger" disabled="true">Delete</button>
+              </td>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <app-modal></app-modal>
